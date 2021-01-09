@@ -10,14 +10,53 @@ import './Board.css';
  */
 
 class Board extends Component {
-	render() {
+  constructor(props) {
+	  super(props);
+	  this.state ={
+	  	  boardOneRed:false,
+		  boardTwoRed:false,
+		  boardThreeRed:false,
+	  };
+  }
+
+	    changeColorBoard1(e){
+		this.setState({
+			boardOneRed: !this.state.boardOneRed,
+			boardTwoRed: false,
+			boardThreeRed:false
+		});
+	}
+
+	changeColorBoard2(e){
+		this.setState({
+			boardTwoRed: !this.state.boardTwoRed,
+			boardOneRed:false,
+			boardThreeRed:false
+		});
+	}
+	changeColorBoard3(e){
+		this.setState({
+			boardThreeRed: !this.state.boardThreeRed,
+			boardOneRed:false,
+			boardTwoRed:false
+		});
+	}
+
+
+
+
+		render() {
+  		    let boardColor1 = this.state.boardOneRed ? 'Board-Red' : 'Board-Blue';
+			let boardColor2 = this.state.boardTwoRed ? 'Board-Red' : 'Board-Blue';
+			let boardColor3 = this.state.boardThreeRed ? 'Board-Red' : 'Board-Blue';
 		return (
 			<div className="Board">
 				<h1>Choose board:</h1>
-				<div className="boards">
-					<div className="Board-option">1</div>
-					<div className="Board-option">2</div>
-					<div className="Board-option">3</div>
+				<div className="boards" >
+
+					<div className={boardColor1}  onClick={this.changeColorBoard1.bind(this)} >1</div>
+					<div className={boardColor2}  onClick={this.changeColorBoard2.bind(this)} >2</div>
+					<div className={boardColor3}  onClick={this.changeColorBoard3.bind(this)}>3</div>
 				</div>
 			</div>
 		);
